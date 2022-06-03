@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - приложение ASP.NET</title>
@@ -9,25 +9,44 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Информация", "About", "Home")</li>
-                    <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
+            @Html.ActionLink("МІС", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (int.Parse(User.Identity.Name) >= 1000)
+                            {
+                                @Html.ActionLink("Сторінка паціента", "Index", "WindowPacient", new { area = "" }, new { @class = "nav-link" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Сторінка лікаря", "Index", "WindowDoctor", new { area = "" }, new { @class = "nav-link" })
+
+                            }
+                        }
+                    </li>
+                    <li class="nav-item">@Html.ActionLink("Информация", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Связаться", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (int.Parse(User.Identity.Name) == 0)
+                        {
+                            <li class="nav-item">@Html.ActionLink("Пацієнти", "Index", "Pacient", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Лікарі", "Index", "Doctor", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />

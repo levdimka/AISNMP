@@ -1,0 +1,118 @@
+﻿@model WEB_UI.Models.ModelDoctorsAppointment
+
+@{
+    Layout = null;
+}
+
+@if (@Model.list_queue.Count() == 0)
+{
+    string mess = string.Format("Пациент -{0} Номер карточки {1}", @Model.Pacient.Sourname, @Model.Pacient.Card_number);
+    @Html.Label(mess)
+    <hr />
+    @Html.Hidden("id_pacient", @Model.Pacient.id)
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.curr_date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.curr_date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.curr_date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.list_doctor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.curr_doctor, @Model.list_doctor, "Оберіть лікаря", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.list_doctor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    if (@Model.list_time != null)
+    {
+        if (@Model.list_time.Count() > 0)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.list_time, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.curr_time, @Model.list_time, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.list_time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                @Html.AntiForgeryToken()
+                <input class="actionButtons" type="submit" value="Запис до лікаря" />
+                @*<input class="btn btn-primary btn-lg" id="save" value="Запис до лікаря" />*@
+            </div>
+        }
+        else
+        {
+            @Html.Label("Оберіть іншу дату!");
+        }
+    }
+
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-borderless">
+                <tr>
+                    <th>
+                        Дата
+                    </th>
+                    <th>
+                        Время приема
+                    </th>
+                    <th>
+                        Фах лікаря
+                    </th>
+                    <th>
+                        Лікар
+                    </th>
+                    <th>
+                        Пациент
+                    </th>
+                    <th>
+                        Прием закончен
+                    </th>
+                </tr>
+                @foreach (var item in @Model.list_queue)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Visit.Period)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Doctor.Specialization.Post_Specialization)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Doctor.Sourname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pacient.Sourname)
+                        </td>
+                        <td>
+                            @if (item.Closed == null)
+                            {
+                                <a id="delete-queue" data-id="@item.id" href="#">видалити</a>
+                            }
+                            else
+                            {
+                                @item.Closed
+                            }
+                        </td>
+                    </tr>
+
+                }
+            </table>
+        </div>
+    </div>
+}
+
+
+
+

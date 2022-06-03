@@ -1,0 +1,92 @@
+﻿@model WEB_UI.Models.Doctor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Детальніше</h2>
+
+<div>
+    <h4>Лікарі</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sourname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sourname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patronymic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_of_birth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_of_birth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number_of_telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number_of_telephone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialization.Post_Specialization)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialization.Post_Specialization)
+        </dd>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Course Title</th>
+                    <th>Grade</th>
+                </tr>
+                @foreach (var item in Model.Queue)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idPacient)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Перейти на редагування", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Назад", "Index")
+</p>

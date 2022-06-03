@@ -1,0 +1,89 @@
+﻿
+@model PagedList.IPagedList<WEB_UI.Models.Doctor>
+@using PagedList.Mvc;
+@using WEB_UI.Models;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Doctor";
+}
+
+<h2>Лікарі</h2>
+<p>
+    @Html.ActionLink("Додати", "Create")
+</p>
+@using (Html.BeginForm("Index", "Doctor", FormMethod.Get))
+{
+    <p>
+        Пошук за ім'ям: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Ім'я", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Прізвище", "Index", new { sortOrder = ViewBag.SournameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("По-батькові", "Index", new { sortOrder = ViewBag.PatronymicSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.EmailSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Дата народження", "Index", new { sortOrder = ViewBag.Date_of_birthSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Номер телефону", "Index", new { sortOrder = ViewBag.TelephoneSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Фах", "Index", new { sortOrder = ViewBag.IdSpecializationSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Sourname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Patronymic)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date_of_birth)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Number_of_telephone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => ((Doctor)item).Specialization.Post_Specialization)
+    </td>
+    
+    <td>
+        @Html.ActionLink("редагувати", "Edit", new { id = item.id }) |
+        @Html.ActionLink("деталі", "Details", new { id = item.id }) |
+        @Html.ActionLink("видалити", "Delete", new { id = item.id })
+    </td>
+</tr>
+    }
+
+
+</table>
+
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<WEB_UI.Models.Queue>
+
+@{
+    ViewBag.Title = "Активная очередь пациента";
+    Layout = "~/Views/Shared/_Pacient.cshtml";
+}
+
+<h2>Активная очередь пациента</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Дата")
+        </th>
+        <th>
+            @Html.DisplayName("Место приема")
+        </th>
+        <th>
+            @Html.DisplayName("Фах")
+        </th>
+        <th>
+            @Html.DisplayName("Доктор")
+        </th>
+        <th>
+            @Html.DisplayName("Период")
+        </th>
+        <th>
+            @Html.DisplayName("Пациетн")
+        </th>
+        <th>
+            @Html.DisplayName("Адрес")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @item.Date.ToString("dd.MM.yyyy")
+        </td>
+        <td>
+            @{ 
+                if (item.idVisit != null)
+                {
+                    @Html.DisplayName("Прием у врача");
+                }
+                else {
+                    @Html.DisplayName("Вызов на дом");
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor.Specialization.Post_Specialization);
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor.Sourname)
+        </td>
+        <td>
+            @{
+                if (item.idVisit != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Visit.Period);
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Home.Period);
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pacient.Sourname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Home_address)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

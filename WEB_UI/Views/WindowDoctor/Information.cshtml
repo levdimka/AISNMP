@@ -1,0 +1,26 @@
+﻿@model WEB_UI.Models.Card_information
+
+@{
+    Layout = null;
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Complaints): <i>@Model.Complaints</i>
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Diagnosis): <i>@Model.Diagnosis</i>
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipe): <i>@Model.Recipe</i>
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Closed): <i>@Model.Closed</i>
+        </dt>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Назад", "ScheduleDetali", new { id_doctor = Model.idDoctor})
+</p>
+

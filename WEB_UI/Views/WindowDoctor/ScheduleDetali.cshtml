@@ -1,0 +1,78 @@
+﻿@model WEB_UI.Models.ModelSchedule
+
+@{
+    ViewBag.Title = "Прием у врача";
+    Layout = "~/Views/Shared/_Doctor.cshtml";
+}
+<h2>Прием у врача</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="lead"><b>Лікарь :</b> @Html.DisplayFor(model => model.doctor.Sourname) @Html.DisplayFor(model => model.doctor.Name)</p>
+        <p class="lead"><b>Фах :</b> @Html.DisplayFor(model => model.doctor.Specialization.Post_Specialization)</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr class="thead-light">
+                <th></th>
+                <th>
+                    Дата
+                </th>
+                <th>
+                    Период
+                </th>
+                <th>
+                    Пациент
+                </th>
+                <th>
+                    № Карточки
+                </th>
+                <th>
+                    Окончание визита
+                </th>
+                <th>
+                    Коментарий
+                </th>
+            </tr>
+
+            @foreach (var item in Model.list_queue)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Выбрать", "Reception", new { id_queue = item.id })
+                    </td>
+                    <td>
+                        @item.Date.ToString("dd.MM.yyyy")
+                    </td>
+                    <td>
+                        @if (item.idVisit != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Visit.Period)
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Home.Period)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pacient.Sourname) @Html.DisplayFor(modelItem => item.Pacient.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pacient.Card_number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Closed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

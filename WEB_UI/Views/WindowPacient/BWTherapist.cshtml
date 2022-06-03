@@ -1,0 +1,52 @@
+﻿@model WEB_UI.Models.Pacient
+@{
+    ViewBag.Title = "Забронировать очередь";
+    Layout = "~/Views/Shared/_Pacient.cshtml";
+}
+<h2>Забронировать очередь</h2>
+<hr />
+@using (Html.BeginForm("BWTherapist", "WindowPacient", FormMethod.Get, new { @id = "Doctor" }))
+{
+    @Html.Hidden("id_queue", null)
+    Html.RenderAction("QueueToDoctor", "Queue", new { id_pacient = @Model.id, id_specialization = 4 });
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('input#id_visit').val("");
+            var form = $('form#Doctor');
+            var obj_dt = $('input#curr_date');
+            //$('#delete-visit').each(function () {
+            //    $(this).on('click', function (event) {
+            //        event.preventDefault();
+            //        var id_visit = $(event.currentTarget).attr("data-visit");
+            //        $('input#id_visit').val(Number(id_visit));
+            //        form.submit();
+            //    });
+            //});
+            $('a#delete-queue').each(function () {
+                $(this).on('click', function (event) {
+                    event.preventDefault();
+                    var id = $(event.currentTarget).attr("data-id");
+                    $('input#id_queue').val(Number(id));
+                    form.submit();
+                });
+            });
+            //$('input#test1').on('click', function () {
+            //    var ob = $('input[name*="__RequestVerificationToken"]');
+            //    ob.attr('type', '');
+            //});
+            var obj_select = $('select#curr_doctor');
+            obj_dt.on('input', function (e) {
+                //$('input#id_visit').val("");
+                form.submit();
+            });
+            obj_select.on('change', function (e) {
+                //$('input#id_visit').val("");
+                form.submit();
+            });
+        });
+    </script>
+}

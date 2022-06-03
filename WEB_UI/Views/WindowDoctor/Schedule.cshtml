@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WEB_UI.Models.Queue>
+@{
+    Layout = null;
+}
+<table class="table table-striped">
+    <tr class="thead-light">
+        <th scope="col">
+            Дата приема
+        </th>
+        <th scope="col">
+            Період
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Pacient.Sourname)
+        </th>
+        <th scope="col">
+            Окончание приема
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.Date.ToString("dd.MM.yyyy")
+            </td>
+            <td>
+                @if (item.idVisit != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Visit.Period)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Home.Period)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacient.Sourname) @Html.DisplayFor(modelItem => item.Pacient.Name)
+            </td>
+            <td>
+                @if (item.Closed != null)
+                {
+                    @item.Closed;
+                }
+            </td>
+
+        </tr>
+    }
+
+</table>

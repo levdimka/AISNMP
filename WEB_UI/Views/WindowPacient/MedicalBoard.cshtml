@@ -1,0 +1,213 @@
+﻿@model WEB_UI.Models.ModelMedicalBoard
+@{
+    ViewBag.Title = "Медкомисия";
+    Layout = "~/Views/Shared/_Pacient.cshtml";
+}
+
+
+
+<h2>Медкомисия, Обходной лист.</h2>
+<hr />
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="list-group">
+            <a href="@Url.Action("MedicalBoard", new { id_pacient = @Model.pacient.id, id_link = 1 })" class="list-group-item list-group-item-action @Html.DisplayName(@Model.id_link == 1 ? "active" : "")">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">ЛОР</h5>
+                    <small>
+                        @if (Model.queue_lor != null)
+                        {
+                            @Model.queue_lor.Date.ToString("dd.MM.yyyy")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("-")
+                        }
+                    </small>
+                </div>
+                <p class="mb-1">
+                    Лікар:
+                    @if (Model.queue_lor != null)
+                    {
+                        @Model.queue_lor.Doctor.Sourname
+                    }
+                    else
+                    {
+                        @Html.DisplayName("-")
+                    }
+
+                </p>
+                <small>
+                    очікуе:
+                    @if (Model.queue_lor != null)
+                    {
+                        @Model.queue_lor.Visit.Period
+                    }
+                    else
+                    {
+                        @Html.DisplayName("-")
+                    }
+                </small>
+            </a>
+            <a href="@Url.Action("MedicalBoard", new { id_pacient = @Model.pacient.id, id_link = 2 })" class="list-group-item list-group-item-action @Html.DisplayName(@Model.id_link == 2 ? "active" : "")">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Окуліст</h5>
+                    <small>
+                        @if (Model.queue_okulist != null)
+                        {
+                            @Model.queue_okulist.Date.ToString("dd.MM.yyyy")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("-")
+                        }
+                    </small>
+                </div>
+                <p class="mb-1">
+                    Лікар:
+                    @if (Model.queue_okulist != null)
+                    {
+                        @Model.queue_okulist.Doctor.Sourname
+                    }
+                    else
+                    {
+                        @Html.DisplayName("-")
+                    }
+
+                </p>
+                <small>
+                    очікуе:
+                    @if (Model.queue_okulist != null)
+                    {
+                        @Model.queue_okulist.Visit.Period
+                    }
+                    else
+                    {
+                        @Html.DisplayName("-")
+                    }
+                </small>
+            </a>
+            <a href="@Url.Action("MedicalBoard", new { id_pacient = @Model.pacient.id, id_link = 3 })" class="list-group-item list-group-item-action @Html.DisplayName(@Model.id_link == 3 ? "active" : "")">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Хірург</h5>
+                    <small>
+                        @if (Model.queue_hirurg != null)
+                        {
+                            @Model.queue_hirurg.Date.ToString("dd.MM.yyyy")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("-")
+                        }
+                    </small>
+                </div>
+                <p class="mb-1">
+                    Лікар:
+                    @if (Model.queue_hirurg != null)
+                    {
+                        @Model.queue_hirurg.Doctor.Sourname
+                    }
+                    else
+                    {
+                        @Html.DisplayName("-")
+                    }
+
+                </p>
+                <small>
+                    очікуе:
+                    @if (Model.queue_hirurg != null)
+                    {
+                        @Model.queue_hirurg.Visit.Period
+                    }
+                    else
+                    {
+                        @Html.DisplayName("-")
+                    }
+                </small>
+            </a>
+            <a href="@Url.Action("MedicalBoard", new { id_pacient = @Model.pacient.id, id_link = 4 })" class="list-group-item list-group-item-action @Html.DisplayName(@Model.id_link == 4 ? "active" : "")">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Терапевт</h5>
+                    <small>
+                        @if (Model.queue_terapevt != null)
+                        {
+                            @Model.queue_terapevt.Date.ToString("dd.MM.yyyy")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("-")
+                        }
+                    </small>
+                </div>
+                <p class="mb-1">
+                    Лікар:
+                    @if (Model.queue_terapevt != null)
+                    {
+                        @Model.queue_terapevt.Doctor.Sourname
+                    }
+                    else
+                    {
+                        @Html.DisplayName("-")
+                    }
+
+                </p>
+                <small>
+                    очікуе:
+                    @if (Model.queue_terapevt != null)
+                    {
+                        @Model.queue_terapevt.Visit.Period
+                    }
+                    else
+                    {
+                        @Html.DisplayName("-")
+                    }
+                </small>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-8">
+        @using (Html.BeginForm("MedicalBoard", "WindowPacient", new { id_pacient = Model.pacient.id, id_link = @Model.id_link }, FormMethod.Get, new { @id = "Doctor" }))
+        {
+            @Html.Hidden("id_pacient", @Model.pacient.id)
+            @Html.HiddenFor(model => model.id_link, @Model.id_link)
+            @Html.Hidden("id_queue", null)
+            Html.RenderAction("QueueToDoctor", "Queue", new { id_pacient = @Model.pacient.id, id_specialization = @Model.id_link, curr_time = @Model.curr_time });
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('input#id_visit').val("");
+            var form = $('form#Doctor');
+            var obj_dt = $('input#curr_date');
+            var obj_select = $('select#curr_doctor');
+            //$('input#save').on('click', function (e) {
+            //    $('input#type').val(1);
+            //    form.submit();
+            //});
+
+            $('a#delete-queue').each(function () {
+                $(this).on('click', function (event) {
+                    event.preventDefault();
+                    var id = $(event.currentTarget).attr("data-id");
+                    $('input#id_queue').val(Number(id));
+                    form.submit();
+                });
+            });
+
+            obj_dt.on('input', function (e) {
+                $('input#id_queue').val("");
+                form.submit();
+            });
+            obj_select.on('change', function (e) {
+                $('input#id_queue').val("");
+                form.submit();
+            });
+        });
+    </script>
+}

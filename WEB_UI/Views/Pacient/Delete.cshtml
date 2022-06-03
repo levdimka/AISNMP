@@ -1,0 +1,97 @@
+﻿@model WEB_UI.Models.Pacient
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Видалити</h2>
+<p class="error">@ViewBag.ErrorMessage</p>
+<h3>Чи впевнені ви що хочете ви видалити дану особу?</h3>
+<div>
+    <h4>Пацієнти</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Card.Card_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Card.Card_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sourname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sourname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patronymic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_of_birth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_of_birth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number_of_telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number_of_telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Видалити" class="btn btn-default" /> |
+            @Html.ActionLink("назад", "Index")
+        </div>
+    }
+</div>
