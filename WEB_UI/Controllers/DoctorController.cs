@@ -22,7 +22,7 @@ namespace WEB_UI.Controllers
         //    public int id { get; set; }
         //    public string Title { get; set; }
         //}
-        
+
         private List<Specialization> GetSpecificals()
         {
             //var specificals = new List<Specifical>();
@@ -30,13 +30,13 @@ namespace WEB_UI.Controllers
             //specificals.Add(new Specifical() { id = 2, Title = "Окуліст" });
             //specificals.Add(new Specifical() { id = 3, Title = "Хірург" });
             //specificals.Add(new Specifical() { id = 4, Title = "Терапевт" });
-            List<Specialization>  res = db.Specialization.ToList();
+            List<Specialization> res = db.Specialization.ToList();
             return res;
         }
         // GET: Doctor
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            
+
             ViewBag.CurrentSort = sortOrder;
             if (searchString != null)
             {
@@ -149,23 +149,22 @@ namespace WEB_UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, Sourname, Patronymic, Email, Date_of_birth, Number_of_telephone, IdSpecialization, Password")] Doctor doctor)
+        public ActionResult Create([Bind(Include = "Num_document, Name, Sourname, Patronymic, Email, Date_of_birth, Number_of_telephone, IdSpecialization, Password")] Doctor doctor)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-
-                    //Card new_card = new Card()
-                    //{
-                    //    Card_number = pacient.Card_number,
-                    //    Start_data = DateTime.Now,
-                    //    Stop_data = null
-                    //};
-                    //db.Card.Add(new_card);
-                    db.Doctor.Add(doctor);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    if (doctor.Num_document < 999)
+                    {
+                        db.Doctor.Add(doctor);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Номер документа врача должен быть < 999");
+                    }
                 }
             }
             catch (Exception e   /*RetryLimitExceededException  dex */)
@@ -175,7 +174,7 @@ namespace WEB_UI.Controllers
             }
             return View(doctor);
         }
-        
+
         // GET: Student/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -201,7 +200,7 @@ namespace WEB_UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var doctorToUpdate = db.Doctor.Find(id);
-            if (TryUpdateModel(doctorToUpdate, "", new string[] { "Name", "Sourname", "Patronymic", "Email", "Date_of_birth", "Number_of_telephone", "IdSpecialization" }))
+            if (TryUpdateModel(doctorToUpdate, "", new string[] { "Num_document", "Name", "Sourname", "Patronymic", "Email", "Date_of_birth", "Number_of_telephone", "IdSpecialization" }))
             {
                 try
                 {

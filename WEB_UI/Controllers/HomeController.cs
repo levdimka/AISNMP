@@ -59,7 +59,6 @@ namespace WEB_UI.Controllers
             return View(model);
         }
 
-
         public ActionResult Register()
         {
             return View();
@@ -69,36 +68,55 @@ namespace WEB_UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserRegister model)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    User user = null;
-            //    using (UserContext db = new UserContext())
-            //    {
-            //        user = db.Users.FirstOrDefault(u => u.Email == model.Name);
-            //    }
-            //    if (user == null)
-            //    {
-            //        // создаем нового пользователя
-            //        using (UserContext db = new UserContext())
-            //        {
-            //            db.Users.Add(new User { Email = model.Name, Password = model.Password, Age = model.Age });
-            //            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                if (model.Card_number >= 1000)
+                {
+                    Pacient old_pacient = db.Pacient.Where(p => p.Card_number == model.Card_number).FirstOrDefault();
+                    if (old_pacient == null)
+                    {
+                        Card new_card = new Card()
+                        {
+                            Card_number = model.Card_number,
+                            Start_data = DateTime.Now,
+                            Stop_data = null
+                        };
 
-            //            user = db.Users.Where(u => u.Email == model.Name && u.Password == model.Password).FirstOrDefault();
-            //        }
-            //        // если пользователь удачно добавлен в бд
-            //        if (user != null)
-            //        {
-            //            FormsAuthentication.SetAuthCookie(model.Name, true);
-            //            return RedirectToAction("Index", "Home");
-            //        }
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError("", "Пользователь с таким логином уже существует");
-            //    }
-            //}
+                        Pacient pacient = new Pacient()
+                        {
+                            id = 0,
+                            Card_number = model.Card_number,
+                            Name = model.Name,
+                            Sourname = model.Sourname,
+                            Patronymic = model.Patronymic,
+                            Adress = model.Adress,
+                            Date_of_birth = model.Date_of_birth,
+                            Password = model.Password,
+                            Email = model.Email,
+                            Number_of_telephone = model.Number_of_telephone
+                        };
+                        db.Card.Add(new_card);
+                        db.Pacient.Add(pacient);
+                        db.SaveChanges();
 
+                        pacient = db.Pacient.Where(p => p.Card_number == model.Card_number && p.Password == model.Password).FirstOrDefault();
+                        if (pacient != null)
+                        {
+                            FormsAuthentication.SetAuthCookie(model.Card_number.ToString(), true);
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Пациент с таким номером уже существует");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Номер карточки должен быть >999");
+
+                }
+            }
             return View(model);
         }
         public ActionResult Logoff()

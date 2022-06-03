@@ -5,8 +5,9 @@
 }
 
 <div class="jumbotron">
-    <h1>Добрий день</h1>
-    <p class="lead">Дякуємо що обрали саме нашу медичну систему. Номер вашої медичної карти: @Html.DisplayFor(model => model.Card_number)</p>
+    <h1>Добрий день @Html.DisplayFor(model => model.Sourname) @Html.DisplayFor(model => model.Name)</h1>
+    <p class="lead">Дякуємо що обрали саме нашу медичну систему.</p>
+    <p class="lead">Номер вашої медичної карти: @Html.DisplayFor(model => model.Card_number)</p>
 </div>
 <div class="col-md-12 text-center">
     <h1>Ціль вашого візиту</h1>
