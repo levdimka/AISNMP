@@ -22,6 +22,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.ActionLink("№ посвідчення", "Index", new { sortOrder = ViewBag.Num_documentSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
             @Html.ActionLink("Ім'я", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
@@ -50,6 +53,9 @@
     {
 <tr>
     <td>
+        @Html.DisplayFor(modelItem => item.Num_document)
+    </td>
+    <td>
         @Html.DisplayFor(modelItem => item.Name)
     </td>
     <td>
@@ -70,7 +76,7 @@
     <td>
         @Html.DisplayFor(modelItem => ((Doctor)item).Specialization.Post_Specialization)
     </td>
-    
+
     <td>
         @Html.ActionLink("редагувати", "Edit", new { id = item.id }) |
         @Html.ActionLink("деталі", "Details", new { id = item.id }) |

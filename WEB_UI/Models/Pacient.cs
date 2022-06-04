@@ -50,6 +50,7 @@ namespace WEB_UI.Models
 
         [Required]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Адреса")]
 
         public string Adress { get; set; }

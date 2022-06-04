@@ -1,0 +1,9 @@
+﻿@model WEB_UI.Models.Doctor
+
+@{
+    Layout = null;
+}
+
+<p class="lead">Лікарь: @Model.Sourname @Model.Name @Model.Patronymic</p>
+<p class="lead">Фах: @Model.Specialization.Post_Specialization</p>
+<p class="lead">№ повідчення: @Model.Num_document</p>

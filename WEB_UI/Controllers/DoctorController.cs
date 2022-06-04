@@ -17,19 +17,9 @@ namespace WEB_UI.Controllers
     public class DoctorController : Controller
     {
         private MedicalContext db = new MedicalContext();
-        //public class Specifical
-        //{
-        //    public int id { get; set; }
-        //    public string Title { get; set; }
-        //}
 
         private List<Specialization> GetSpecificals()
         {
-            //var specificals = new List<Specifical>();
-            //specificals.Add(new Specifical() { id = 1, Title = "Лор" });
-            //specificals.Add(new Specifical() { id = 2, Title = "Окуліст" });
-            //specificals.Add(new Specifical() { id = 3, Title = "Хірург" });
-            //specificals.Add(new Specifical() { id = 4, Title = "Терапевт" });
             List<Specialization> res = db.Specialization.ToList();
             return res;
         }
@@ -55,6 +45,14 @@ namespace WEB_UI.Controllers
             }
             switch (sortOrder)
             {
+                case "num_document_desc":
+                    doctors = doctors.OrderByDescending(p => p.Num_document).ToList();
+                    ViewBag.Num_documentSortParm = "num_document";
+                    break;
+                case "num_document":
+                    doctors = doctors.OrderBy(p => p.Num_document).ToList();
+                    ViewBag.Num_documentSortParm = "num_document_desc";
+                    break;
                 case "name_desc":
                     doctors = doctors.OrderByDescending(d => d.Name).ToList();
                     ViewBag.NameSortParm = "name";
@@ -114,6 +112,7 @@ namespace WEB_UI.Controllers
 
                 default:  // Name ascending 
                     doctors = doctors.OrderBy(d => d.id).ToList();
+                    ViewBag.Num_documentSortParm = "num_document";
                     ViewBag.NameSortParm = "name";
                     ViewBag.SournameSortParm = "sourname";
                     ViewBag.PatronymicSortParm = "patronymic";

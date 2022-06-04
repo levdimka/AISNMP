@@ -6,6 +6,23 @@
     <h2>Автоматизована медична інформаційна система (АМІС) — інформаційна система для автоматизації лікувальної установи.</h2>
     @if (User.Identity.IsAuthenticated)
     {
+
+        if (int.Parse(User.Identity.Name) == 0)
+        {
+            <p class="lead">Адміністратор системи</p>
+        }
+        else {
+            if (int.Parse(User.Identity.Name) >= 1000)
+            {
+                Html.RenderAction("PacientInfo");
+            }
+            else
+            {
+                Html.RenderAction("DoctorInfo");
+
+            }
+        }
+
         @Html.ActionLink("Вийти...", "Logoff", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
     }
     else
