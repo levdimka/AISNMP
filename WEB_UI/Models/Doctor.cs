@@ -19,6 +19,7 @@ namespace WEB_UI.Models
         public int id { get; set; }
 
         [Required]
+        [Display(Name = "Номер посвідчення")]
         public int Num_document { get; set; }
 
         [Required]

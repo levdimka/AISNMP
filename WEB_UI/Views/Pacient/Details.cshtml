@@ -85,25 +85,7 @@
 
         </dd>
 
-        <dd>
-            <table class="table">
-                <tr>
-                    <th>Course Title</th>
-                    <th>Grade</th>
-                </tr>
-                @foreach (var item in Model.Queue)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.idDoctor)
-                        </td>
-                    </tr>
-                }
-            </table>
-        </dd>
+        
     </dl>
 </div>
 <p>
