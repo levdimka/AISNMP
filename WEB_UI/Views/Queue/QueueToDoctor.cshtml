@@ -6,7 +6,7 @@
 
 @if (@Model.list_queue.Count() == 0)
 {
-    string mess = string.Format("Пацієнт -{0} Номер карточки {1}", @Model.Pacient.Sourname, @Model.Pacient.Card_number);
+    string mess = string.Format("Пацієнт -{0} Номер картки {1}", @Model.Pacient.Sourname, @Model.Pacient.Card_number);
     @Html.Label(mess)
     <hr />
     @Html.Hidden("id_pacient", @Model.Pacient.id)

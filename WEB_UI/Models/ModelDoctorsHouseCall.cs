@@ -10,9 +10,9 @@ namespace WEB_UI.Models
 {
     public class ModelDoctorsHouseCall : ModelDoctorsAppointment {
         [Required]
-        [RegularExpression("[A-Za-zА-Яа-яЁёІіЇїЄє]{0,50}", ErrorMessage = "дане поле повинно містити лише букви")]
+        [DataType(DataType.MultilineText)]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "довжина повинна бути від 3 до 50 символів")]
-        [Display(Name = "Адреса викліку")]
+        [Display(Name = "Адреса виклику")]
         public string curr_address { get; set; }
     }
 

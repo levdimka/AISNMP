@@ -20,20 +20,20 @@ namespace WEB_UI.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "date")]
-        [Display(Name = "Дата визита")]
+        [Display(Name = "Дата візиту")]
         public DateTime Date_of_receipt { get; set; }
 
         public bool? Medical_board { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "Жалобы")]
+        [Display(Name = "Скарги")]
         [StringLength(1000)]
         public string Complaints { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "Диагноз")]
+        [Display(Name = "Діагноз")]
         [StringLength(1000)]
         public string Diagnosis { get; set; }
 
@@ -47,7 +47,7 @@ namespace WEB_UI.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "date")]
-        [Display(Name = "Закрыть бальничный")]
+        [Display(Name = "Завершити лікарняний")]
         public DateTime? Closed { get; set; }
 
         public virtual Card Card { get; set; }

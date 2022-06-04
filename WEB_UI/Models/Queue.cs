@@ -25,7 +25,7 @@ namespace WEB_UI.Models
         public DateTime? Closed { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [Display(Name = "Примечание")]
+        [Display(Name = "Примітка")]
         [StringLength(50)]
         public string Note { get; set; }
 

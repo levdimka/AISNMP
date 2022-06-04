@@ -3,7 +3,7 @@
     ViewBag.Title = "Картка пацієнта";
     Layout = "~/Views/Shared/_Doctor.cshtml";
 }
-<h2>Карточка № @Html.DisplayFor(model => model.queue.Pacient.Card_number), пациента : @Html.DisplayFor(model => model.queue.Pacient.Sourname) @Html.DisplayFor(model => model.queue.Pacient.Name)</h2>
+<h2>Картка № @Html.DisplayFor(model => model.queue.Pacient.Card_number), пацієнта : @Html.DisplayFor(model => model.queue.Pacient.Sourname) @Html.DisplayFor(model => model.queue.Pacient.Name)</h2>
 <div class="row">
     <div class="col-md-12">
         <p class="lead"><b>Лікар :</b> @Html.DisplayFor(model => model.doctor.Sourname) @Html.DisplayFor(model => model.doctor.Name)</p>

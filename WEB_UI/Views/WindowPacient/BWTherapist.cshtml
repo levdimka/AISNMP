@@ -18,14 +18,7 @@
             $('input#id_visit').val("");
             var form = $('form#Doctor');
             var obj_dt = $('input#curr_date');
-            //$('#delete-visit').each(function () {
-            //    $(this).on('click', function (event) {
-            //        event.preventDefault();
-            //        var id_visit = $(event.currentTarget).attr("data-visit");
-            //        $('input#id_visit').val(Number(id_visit));
-            //        form.submit();
-            //    });
-            //});
+          
             $('a#delete-queue').each(function () {
                 $(this).on('click', function (event) {
                     event.preventDefault();
@@ -34,17 +27,12 @@
                     form.submit();
                 });
             });
-            //$('input#test1').on('click', function () {
-            //    var ob = $('input[name*="__RequestVerificationToken"]');
-            //    ob.attr('type', '');
-            //});
+           
             var obj_select = $('select#curr_doctor');
             obj_dt.on('input', function (e) {
-                //$('input#id_visit').val("");
                 form.submit();
             });
             obj_select.on('change', function (e) {
-                //$('input#id_visit').val("");
                 form.submit();
             });
         });
