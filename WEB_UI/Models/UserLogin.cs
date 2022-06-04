@@ -10,10 +10,12 @@ namespace WEB_UI.Models
     public class UserLogin
     {
         [Required]
+        [Display(Name = "Номер посвідчення/картки")]
         public int NumDocument { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
     }

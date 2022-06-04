@@ -63,7 +63,7 @@ namespace WEB_UI.Models
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "Подтвердите Пароль")]
+        [Display(Name = "Підтвердити Пароль")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }
