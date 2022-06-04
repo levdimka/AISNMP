@@ -3,9 +3,7 @@
 }
 
 <div class="jumbotron">
-    @*<h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+    <h2>Медична інформаційна система (МІС) — інформаційна система для автоматизації лікувальної установи.</h2>
     @if (User.Identity.IsAuthenticated)
     {
         @Html.ActionLink("Вийти...", "Logoff", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
@@ -19,11 +17,15 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h1>Класифікація</h1>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            І. Залежно від ступеня автоматизації процесів збору й обробки інформації, МІС поділяються на автоматизовані й автоматичні. В автоматизованих системах частина операцій по збору й обробці інформації виконується людиною. Автоматичні системи припускають повне виключення людини з процесів збору й обробки інформації.
+        </p>
+        <p>
+            ІІ. Залежно від типу інформаційної бази, МІС поділяються на системи, що оперують даними, та системи, що оперують знаннями. Системи другого типу — це експертні системи. Їхнє функціонування істотно спирається на знання, отримані від експертів, а результати функціонування близькі результатам аналітичної діяльності експертів.
+        </p>
+        <p>
+            Інформаційно-логічна система призначена для перетворення інформації таким чином, щоб можна було одержати нову інформацію, відсутню в інформаційному масиві. У системах управління реалізується принципово нова функція — прийняття керуючих рішень.
         </p>
         <p>
             @*@Html.ActionLink("Головна сторінка паціента", "Index", "WindowPacient", new { area = "" }, new { @class = "btn btn-primary btn-lg" })*@
@@ -31,15 +33,16 @@
 
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <h1>Інформаційне забезпечення МІС</h1>
+        <p>МІС характеризуються наявністю, як правило, великих обсягів даних і знань. Обробка даних і знань зводиться до трьох основних етапів. На першому етапі елементи інформації розміщуються у визначених структурах — базах даних (БД) і базах знань (БЗ). На другому етапі БД і БЗ піддаються упорядкуванню: змінюється їхня структура, порядок розміщення інформації, характер взаємозв'язків між елементами інформації. На третьому етапі здійснюють експлуатацію БД: пошук потрібної інформації, прийняття рішень, редагування баз даних і знань.</p>
+        <p>Інформаційне забезпечення МІС складають: історії хвороби, виписки з історій хвороби, епікризів, стандартизованих карт обстеження, діагностичні й інформативні оцінки показників і станів, критерії ефективності обстеження і лікування, каталог медичних понять і термінів.</p>
         <p>
             @*@Html.ActionLink("Головна сторінка лікаря", "Index", "WindowDoctor", new { area = "" }, new { @class = "btn btn-primary btn-lg" })*@
         </p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <h1>Медичні інформаційні системи в Україні</h1>
+        <p>В Україні медичні заклади зможуть обирати будь-яку медичну інформаційну систему з-поміж тих, які пройшли перевірку і підключилися до центрального компонента системи «eHealth».</p>
         @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>*@
     </div>
 </div>

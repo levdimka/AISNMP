@@ -127,14 +127,14 @@ namespace WEB_UI.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Інформація про ASP.NET";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Дані розробника";
 
             return View();
         }
