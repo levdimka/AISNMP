@@ -143,7 +143,7 @@ namespace WEB_UI.Controllers
                     return RedirectToAction("Reception", new { id_doctor = information.idDoctor, id_queue = id_queue });
                 }
                 else {
-                    ModelState.AddModelError("", "Ошибка");
+                    ModelState.AddModelError("", "Помилка");
                 }
             }
             catch (Exception e   /*RetryLimitExceededException  dex */)
@@ -197,7 +197,7 @@ namespace WEB_UI.Controllers
                     catch (RetryLimitExceededException)
                     {
                         //Log the error (uncomment dex variable name and add a line here to write a log.
-                        ModelState.AddModelError("", "Ошибка закрытия очереди");
+                        ModelState.AddModelError("", "Помилка закриття черги");
                     }
                 }
             }

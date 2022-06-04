@@ -6,7 +6,7 @@
 
 @if (@Model.list_queue.Count() == 0)
 {
-    string mess = string.Format("Пациент -{0} Номер карточки {1}", @Model.Pacient.Sourname, @Model.Pacient.Card_number);
+    string mess = string.Format("Пацієнт -{0} Номер карточки {1}", @Model.Pacient.Sourname, @Model.Pacient.Card_number);
     @Html.Label(mess)
     <hr />
     @Html.Hidden("id_pacient", @Model.Pacient.id)
@@ -62,7 +62,7 @@ else
                         Дата
                     </th>
                     <th>
-                        Время приема
+                        Час прийому
                     </th>
                     <th>
                         Фах лікаря
@@ -71,10 +71,10 @@ else
                         Лікар
                     </th>
                     <th>
-                        Пациент
+                        Пацієнт
                     </th>
                     <th>
-                        Прием закончен
+                        Прийом завершено
                     </th>
                 </tr>
                 @foreach (var item in @Model.list_queue)

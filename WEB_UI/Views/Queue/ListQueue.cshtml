@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WEB_UI.Models.Queue>
 
 @{
-    ViewBag.Title = "Активная очередь пациента";
+    ViewBag.Title = "Активна черга паціента";
     Layout = "~/Views/Shared/_Pacient.cshtml";
 }
 
@@ -14,7 +14,7 @@
             @Html.DisplayName("Дата")
         </th>
         <th>
-            @Html.DisplayName("Место приема")
+            @Html.DisplayName("Місце прийому")
         </th>
         <th>
             @Html.DisplayName("Фах")
@@ -23,13 +23,13 @@
             @Html.DisplayName("Доктор")
         </th>
         <th>
-            @Html.DisplayName("Период")
+            @Html.DisplayName("Період")
         </th>
         <th>
-            @Html.DisplayName("Пациетн")
+            @Html.DisplayName("Паціент")
         </th>
         <th>
-            @Html.DisplayName("Адрес")
+            @Html.DisplayName("Адреса")
         </th>
         <th></th>
     </tr>
@@ -44,10 +44,10 @@
             @{ 
                 if (item.idVisit != null)
                 {
-                    @Html.DisplayName("Прием у врача");
+                    @Html.DisplayName("Прийом у лікаря");
                 }
                 else {
-                    @Html.DisplayName("Вызов на дом");
+                    @Html.DisplayName("Виклик на дім");
                 }
             }
         </td>

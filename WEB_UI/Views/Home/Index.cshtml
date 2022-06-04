@@ -8,12 +8,12 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
     @if (User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Выйти...", "Logoff", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        @Html.ActionLink("Вийти...", "Logoff", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
     }
     else
     {
-        @Html.ActionLink("Авторизироватся", "Login", new { area = "" }, new { @class = "btn btn-primary btn-lg mr-2" })
-        @Html.ActionLink("Регистрироватся", "Register", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        @Html.ActionLink("Авторизуватися", "Login", new { area = "" }, new { @class = "btn btn-primary btn-lg mr-2" })
+        @Html.ActionLink("Зареєструватися", "Register", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
     }
 </div>
 

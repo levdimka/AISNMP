@@ -148,7 +148,7 @@ namespace WEB_UI.Controllers
                         else
                         {
                             curr_time = null;
-                            ModelState.AddModelError("", "Ошибка сохранеия");
+                            ModelState.AddModelError("", "Помилка збереження");
                         }
                     }
                     else
@@ -157,11 +157,11 @@ namespace WEB_UI.Controllers
                         string mess = null;
                         if (queue.idVisit != null)
                         {
-                            mess = string.Format("Запись не возможна, вы уже записаны к врачу: {0}, на период {1}", queue.Doctor.Sourname, queue.Visit.Period);
+                            mess = string.Format("Запис не можливий, ви вже записані до лікаря: {0}, на період {1}", queue.Doctor.Sourname, queue.Visit.Period);
                         }
                         else
                         {
-                            mess = string.Format("Запись не возможна, вы уже вызвали врача: {0} надом, ожидайте в период {1}", queue.Doctor.Sourname, queue.Home.Period);
+                            mess = string.Format("Запис не можливий, ви вже викликали лікаря: {0} на дім, очікуйте в період {1}", queue.Doctor.Sourname, queue.Home.Period);
                         }
                         ModelState.AddModelError("", mess);
                     }
@@ -169,7 +169,7 @@ namespace WEB_UI.Controllers
                 else
                 {
                     curr_time = null;
-                    ModelState.AddModelError("", "Перед посещением терапевта необходимо пройти узких специалистов");
+                    ModelState.AddModelError("", "Перед прийомом терапевта необхідно пройти вузьких специалістів");
                 }
 
 

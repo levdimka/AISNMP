@@ -1,14 +1,14 @@
 ﻿@model WEB_UI.Models.ModelSchedule
 
 @{
-    ViewBag.Title = "Прием у врача";
+    ViewBag.Title = "Прийом у лікаря";
     Layout = "~/Views/Shared/_Doctor.cshtml";
 }
 <h2>Прием у врача</h2>
 
 <div class="row">
     <div class="col-md-12">
-        <p class="lead"><b>Лікарь :</b> @Html.DisplayFor(model => model.doctor.Sourname) @Html.DisplayFor(model => model.doctor.Name)</p>
+        <p class="lead"><b>Лікар :</b> @Html.DisplayFor(model => model.doctor.Sourname) @Html.DisplayFor(model => model.doctor.Name)</p>
         <p class="lead"><b>Фах :</b> @Html.DisplayFor(model => model.doctor.Specialization.Post_Specialization)</p>
     </div>
 </div>
@@ -21,19 +21,19 @@
                     Дата
                 </th>
                 <th>
-                    Период
+                    Період
                 </th>
                 <th>
-                    Пациент
+                    Пацієнт
                 </th>
                 <th>
-                    № Карточки
+                    № Картки
                 </th>
                 <th>
-                    Окончание визита
+                    Завершення візиту
                 </th>
                 <th>
-                    Коментарий
+                    Коментарі
                 </th>
             </tr>
 
@@ -41,7 +41,7 @@
             {
                 <tr>
                     <td>
-                        @Html.ActionLink("Выбрать", "Reception", new { id_queue = item.id })
+                        @Html.ActionLink("Обрати", "Reception", new { id_queue = item.id })
                     </td>
                     <td>
                         @item.Date.ToString("dd.MM.yyyy")

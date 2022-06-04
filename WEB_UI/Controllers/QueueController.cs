@@ -129,7 +129,7 @@ namespace WEB_UI.Controllers
                         else
                         {
                             curr_time = null;
-                            ModelState.AddModelError("", "Ошибка сохранеия");
+                            ModelState.AddModelError("", "Помилка збереження");
                         }
                     }
                     else
@@ -138,11 +138,11 @@ namespace WEB_UI.Controllers
                         string mess = null;
                         if (queue.idVisit != null)
                         {
-                            mess = string.Format("Запись не возможна, вы уже записаны к врачу: {0}, на период {1}", queue.Doctor.Sourname, queue.Visit.Period);
+                            mess = string.Format("Запис неможливий, вы вже записані до лікаря: {0}, на период {1}", queue.Doctor.Sourname, queue.Visit.Period);
                         }
                         else
                         {
-                            mess = string.Format("Запись не возможна, вы уже вызвали врача: {0} надом, ожидайте в период {1}", queue.Doctor.Sourname, queue.Home.Period);
+                            mess = string.Format("Запис не можливий, вы вже записані до лікаря: {0} на дім, очікуйте в період {1}", queue.Doctor.Sourname, queue.Home.Period);
                         }
                         ModelState.AddModelError("", mess);
                     }
@@ -151,7 +151,7 @@ namespace WEB_UI.Controllers
             else
             {
                 curr_time = null;
-                ModelState.AddModelError("", "Дата записи к врачу не может быть меньше текущей даты");
+                ModelState.AddModelError("", "Дата запису до лікаря не може бути менше сьогоднішньої дати");
             }
 
             // Выбор свободного периода для записи к врачу, и список записей к врачу
@@ -281,7 +281,7 @@ namespace WEB_UI.Controllers
                         else
                         {
                             curr_time = null;
-                            ModelState.AddModelError("", "Ошибка сохранеия");
+                            ModelState.AddModelError("", "помилка збереження");
                         }
                     }
                     else
@@ -293,7 +293,7 @@ namespace WEB_UI.Controllers
             else
             {
                 curr_time = null;
-                ModelState.AddModelError("", "Дата записи к врачу не может быть меньше текущей даты");
+                ModelState.AddModelError("", "Дата запису до лікаря не може бути менше сьогоднішньої дати");
             }
             // Выбор свободного периода для записи к врачу, и список записей к врачу
             DateTime current_date = DateTime.Now.Date;
@@ -427,7 +427,7 @@ namespace WEB_UI.Controllers
                         else
                         {
                             curr_time = null;
-                            ModelState.AddModelError("", "Ошибка сохранеия");
+                            ModelState.AddModelError("", "Помилка збереження");
                         }
                     }
                     else
@@ -436,11 +436,11 @@ namespace WEB_UI.Controllers
                         string mess = null;
                         if (queue.idVisit != null)
                         {
-                            mess = string.Format("Запись не возможна, вы уже записаны к врачу: {0}, на период {1}", queue.Doctor.Sourname, queue.Visit.Period);
+                            mess = string.Format("Запис не можливий, вы вже записані до лікаря: {0}, на період {1}", queue.Doctor.Sourname, queue.Visit.Period);
                         }
                         else
                         {
-                            mess = string.Format("Запись не возможна, вы уже вызвали врача: {0} надом, ожидайте в период {1}", queue.Doctor.Sourname, queue.Home.Period);
+                            mess = string.Format("Запис не можливий, вы вже викликали лікаря: {0} на дім, очікуйте в період {1}", queue.Doctor.Sourname, queue.Home.Period);
                         }
                         ModelState.AddModelError("", mess);
 
@@ -452,7 +452,7 @@ namespace WEB_UI.Controllers
             else
             {
                 curr_time = null;
-                ModelState.AddModelError("", "Дата записи к врачу не может быть меньше текущей даты");
+                ModelState.AddModelError("", "Дата запису до лікаря не може бути менше сьогоднішньої дати");
             }
 
             // Выбор свободного периода для записи к врачу, и список записей к врачу

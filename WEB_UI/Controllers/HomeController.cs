@@ -52,7 +52,7 @@ namespace WEB_UI.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Пользователя с таким документом и паролем нет");
+                    ModelState.AddModelError("", "Користувача с таким документом та паролем нема");
                 }
             }
 
@@ -108,12 +108,12 @@ namespace WEB_UI.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Пациент с таким номером уже существует");
+                        ModelState.AddModelError("", "Пацієнт з таким номером вже існує");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Номер карточки должен быть >999");
+                    ModelState.AddModelError("", "Номер картки повинен бути >999");
 
                 }
             }
