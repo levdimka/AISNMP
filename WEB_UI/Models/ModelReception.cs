@@ -12,8 +12,8 @@ namespace WEB_UI.Models
     {
         public Doctor doctor { get; set; }
         public Queue queue { get; set; }
-
         public Card_information card_information  { get; set; }
+        public List<Card_information> list_information  { get; set; }
 
 
     }

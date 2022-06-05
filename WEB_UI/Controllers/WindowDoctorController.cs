@@ -115,31 +115,41 @@ namespace WEB_UI.Controllers
             Doctor doctor = db.Doctor.Find(id_doctor);
             Queue queue = null;
             Card_information card_information = null;
+            List<Card_information> list_information = new List<Card_information>();
             if (id_queue != null)
             {
                 queue = db.Queue.Find(id_queue);
                 card_information = db.Card_information.Where(i => i.Card_number == queue.Pacient.Card_number && i.Closed == null).FirstOrDefault();
+                list_information = db.Card_information.Where(i => i.Card_number == queue.Pacient.Card_number && i.Closed != null).ToList();
             }
             ModelReception model = new ModelReception()
             {
                 doctor = doctor,
                 queue = queue,
-                card_information = card_information
+                card_information = card_information, 
+                list_information = list_information
             };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create_Information(int? id_queue, [Bind(Include = "Card_number, Date_of_receipt, Complaints, Diagnosis, Recipe, idDoctor")] Card_information information)
+        public ActionResult Create_Information(int? id_queue, [Bind(Include = "Card_number, Date_of_receipt, Complaints, Diagnosis, Recipe, idDoctor, Closed")] Card_information information)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     db.Card_information.Add(information);
+                    // Если закрыт больничный закрыть и очередь
+                    if (information.Closed != null) { 
+                        var queue = db.Queue.Find(id_queue);
+                        if (queue != null) {
+                            queue.Note = "Лікарняний закритий";
+                            queue.Closed = DateTime.Now;
+                        }
+                    }
                     db.SaveChanges();
-
                     return RedirectToAction("Reception", new { id_doctor = information.idDoctor, id_queue = id_queue });
                 }
                 else {

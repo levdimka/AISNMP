@@ -10,144 +10,183 @@
         <p class="lead"><b>Фах :</b> @Html.DisplayFor(model => model.doctor.Specialization.Post_Specialization)</p>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Повернуться на прийом у лікаря", "ScheduleDetali", "WindowDoctor", new { idDoctor = @Model.doctor.id, type = @Model.queue.idHome !=null ? (int?)0 : null }, new { @class = "btn btn-primary btn-lg" })
+    </div>
+</div>
 
-
-@if (Model.card_information == null)
+@if (Model.queue.Closed == null)
 {
-    using (Html.BeginForm("Create_Information", "WindowDoctor", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-6">
+            @if (Model.card_information == null)
+            {
+                using (Html.BeginForm("Create_Information", "WindowDoctor", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
 
-        @Html.Hidden("idDoctor", @Model.doctor.id)
-        @Html.Hidden("id_queue", @Model.queue.id)
-        @Html.Hidden("Card_number", @Model.queue.Pacient.Card_number)
-        @Html.Hidden("Date_of_receipt", DateTime.Now)
+                    @Html.Hidden("idDoctor", @Model.doctor.id)
+                    @Html.Hidden("id_queue", @Model.queue.id)
+                    @Html.Hidden("Card_number", @Model.queue.Pacient.Card_number)
+                    @Html.Hidden("Date_of_receipt", DateTime.Now)
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.card_information.Complaints, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.card_information.Complaints, "Complaints", "Complaints", new { htmlAttributes = new { @class = "form-control max" } })
-                @Html.ValidationMessage("Complaints", "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.card_information.Complaints, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.card_information.Complaints, "Complaints", "Complaints", new { htmlAttributes = new { @class = "form-control max" } })
+                            @Html.ValidationMessage("Complaints", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.card_information.Diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.card_information.Diagnosis, "Diagnosis", "Diagnosis", new { htmlAttributes = new { @class = "form-control max" } })
+                            @Html.ValidationMessage("Diagnosis", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.card_information.Recipe, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.card_information.Recipe, "Recipe", "Recipe", new { htmlAttributes = new { @class = "form-control max" } })
+                            @Html.ValidationMessage("Recipe", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.card_information.Closed, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.card_information.Closed, "Closed", "Closed", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessage("Closed", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Додати" class="btn btn-primary btn-lg" />
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                if (Model.card_information.Closed == null)
+                {
+                    using (Html.BeginForm("Edit_Information", "WindowDoctor", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.Hidden("idDoctor", @Model.doctor.id)
+                        @Html.Hidden("id_queue", @Model.queue.id)
+                        @Html.Hidden("id", @Model.card_information.id)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.card_information.Complaints, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.card_information.Complaints, "Complaints", "Complaints", new { htmlAttributes = new { @class = "form-control max" } })
+                                @Html.ValidationMessage("Complaints", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.card_information.Diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.card_information.Diagnosis, "Diagnosis", "Diagnosis", new { htmlAttributes = new { @class = "form-control max" } })
+                                @Html.ValidationMessage("Diagnosis", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.card_information.Recipe, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.card_information.Recipe, "Recipe", "Recipe", new { htmlAttributes = new { @class = "form-control max" } })
+                                @Html.ValidationMessage("Recipe", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.card_information.Closed, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.card_information.Closed, "Closed", "Closed", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessage("Closed", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Оновити" class="btn btn-primary btn-lg" />
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    Html.RenderAction("Information", "WindowDoctor", new { information = Model.card_information });
+
+                }
+
+                if (Model.queue.Closed == null)
+                {
+                    using (Html.BeginForm("Close_Queue", "WindowDoctor", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        @Html.Hidden("idDoctor", @Model.doctor.id)
+                        @Html.Hidden("id_queue", @Model.queue.id)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.queue.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.queue.Note, "Note", "Note", new { htmlAttributes = new { @class = "form-control max" } })
+                                @Html.ValidationMessage("Note", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Завершити прийом" class="btn btn-primary btn-lg" />
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+        <div class="col-md-6">
+            <p class="lead">Історія у картці</p>
+            <div class="list-group">
+                @foreach (var item in @Model.list_information)
+                {
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Лікар @item.Doctor.Specialization.Post_Specialization:@item.Doctor.Sourname @item.Doctor.Name</h5>
+                            <small>@item.Date_of_receipt</small>
+                        </div>
+                        <p class="mb-1"><b>Скарга:</b>@item.Complaints</p>
+                        <p class="mb-1"><b>Діагноз:</b>@item.Diagnosis</p>
+                        <small><b>Лікуваня:</b>@item.Recipe</small>
+                    </a>
+                }
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.card_information.Diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.card_information.Diagnosis, "Diagnosis", "Diagnosis", new { htmlAttributes = new { @class = "form-control max" } })
-                @Html.ValidationMessage("Diagnosis", "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.card_information.Recipe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.card_information.Recipe, "Recipe", "Recipe", new { htmlAttributes = new { @class = "form-control max" } })
-                @Html.ValidationMessage("Recipe", "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.card_information.Closed, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.card_information.Closed, "Closed", "Closed", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessage("Closed", "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Додати" class="btn btn-primary btn-lg" />
-            </div>
-        </div>
-    }
+    </div>
 }
 else
 {
-    if (Model.card_information.Closed == null)
-    {
-        using (Html.BeginForm("Edit_Information", "WindowDoctor", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            @Html.Hidden("idDoctor", @Model.doctor.id)
-            @Html.Hidden("id_queue", @Model.queue.id)
-            @Html.Hidden("id", @Model.card_information.id)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.card_information.Complaints, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-12">
-                    @Html.EditorFor(model => model.card_information.Complaints, "Complaints", "Complaints", new { htmlAttributes = new { @class = "form-control max" } })
-                    @Html.ValidationMessage("Complaints", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.card_information.Diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-12">
-                    @Html.EditorFor(model => model.card_information.Diagnosis, "Diagnosis", "Diagnosis", new { htmlAttributes = new { @class = "form-control max" } })
-                    @Html.ValidationMessage("Diagnosis", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.card_information.Recipe, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-12">
-                    @Html.EditorFor(model => model.card_information.Recipe, "Recipe", "Recipe", new { htmlAttributes = new { @class = "form-control max" } })
-                    @Html.ValidationMessage("Recipe", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.card_information.Closed, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.card_information.Closed, "Closed", "Closed", new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("Closed", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Оновити" class="btn btn-primary btn-lg" />
-                </div>
-            </div>
-        }
-    }
-    else
-    {
-        Html.RenderAction("Information", "WindowDoctor", new { information = Model.card_information });
-
-    }
-
-    if (Model.queue.Closed == null)
-    {
-        using (Html.BeginForm("Close_Queue", "WindowDoctor", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-            @Html.Hidden("idDoctor", @Model.doctor.id)
-            @Html.Hidden("id_queue", @Model.queue.id)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.queue.Note, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-12">
-                    @Html.EditorFor(model => model.queue.Note, "Note", "Note", new { htmlAttributes = new { @class = "form-control max" } })
-                    @Html.ValidationMessage("Note", "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Завершити прийом" class="btn btn-primary btn-lg" />
-                </div>
-            </div>
-        }
-    }
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lead">Прийом пацієнта :@Model.queue.Pacient.Sourname @Model.queue.Pacient.Name закінчено : @Model.queue.Closed</p>
+        </div>
+    </div>
 }
+
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
