@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WEB_UI.Controllers.DoctorController">
+    <Position X="2.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAAAAAAAAEAEAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DoctorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WEB_UI.Controllers.HomeController">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAQAAEACAAAAAAAAAABAAAAAAEQAAAEAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WEB_UI.Controllers.PacientController">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAAAAAAAAAAEAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\PacientController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WEB_UI.Controllers.QueueController">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAQAAAAAQAAAAAAAAAAAAMBAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\QueueController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WEB_UI.Controllers.WindowDoctorController">
+    <Position X="5.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACQQAAAAAAAAAAAAQEAAAAIABAEAAAAAAAE=</HashCode>
+      <FileName>Controllers\WindowDoctorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WEB_UI.Controllers.WindowPacientController">
+    <Position X="8" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAIABAAAAIAAAEAAAAAAAI=</HashCode>
+      <FileName>Controllers\WindowPacientController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

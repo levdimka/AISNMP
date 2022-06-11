@@ -219,8 +219,34 @@ namespace WEB_UI.Controllers
         {
             return View(information);
         }
-
-
+        /// <summary>
+        /// Проверить состояние
+        /// </summary>
+        /// <param name="id_doctor"></param>
+        /// <param name="id_queue"></param>
+        /// <returns></returns>
+        public ActionResult FitnessBracelet(int? id_doctor, int? id_queue)
+        {
+            id_doctor = get_idDoctor();
+            if (id_doctor == null)
+            {
+                return new HttpUnauthorizedResult();
+            }
+            Doctor doctor = db.Doctor.Find(id_doctor);
+            Queue queue = null;
+            if (id_queue != null)
+            {
+                queue = db.Queue.Find(id_queue);
+            }
+            ModelReception model = new ModelReception()
+            {
+                doctor = doctor,
+                queue = queue,
+                card_information = null,
+                list_information = null
+            };
+            return View(model);
+        }
 
     }
 }

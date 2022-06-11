@@ -158,7 +158,8 @@
             }
         </div>
         <div class="col-md-6">
-            <p class="lead">Історія у картці</p>
+            <p class="lead">Історія у картці @Html.ActionLink("Перевірити стан", "FitnessBracelet", "WindowDoctor", new { idDoctor = @Model.doctor.id, id_queue = @Model.queue.id }, new { @class = "btn btn-primary" })</p>
+
             <div class="list-group">
                 @foreach (var item in @Model.list_information)
                 {
